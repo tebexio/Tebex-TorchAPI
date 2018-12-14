@@ -1,0 +1,4 @@
+language: csharp
+solution: Tebex-TorchAPI/Tebex-TorchAPI.sln
+install:
+    - nuget restore Tebex-TorchAPI/Tebex-TorchAPI.sln
