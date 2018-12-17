@@ -3,7 +3,9 @@ using NLog;
 using Torch.Commands;
 using Torch.Commands.Permissions;
 using VRage.Game.ModAPI;
+using VRage.Game;
 using Newtonsoft.Json.Linq;
+using Sandbox.Game;
 
 namespace TebexTorchAPI.Commands
 {
@@ -15,8 +17,11 @@ namespace TebexTorchAPI.Commands
         [Permission(MyPromoteLevel.None)]
         public void TebexDonate()
         {
-            Context.Respond("To donate, please visit our webstore at " + Tebex.Instance.information.domain);
+            if (Context.Player != null)
+            {
+                MyVisualScriptLogicProvider.OpenSteamOverlay("https://steamcommunity.com/linkfilter/?url=" + System.Uri.EscapeUriString(Tebex.Instance.information.domain), Context.Player.IdentityId);
+            }
+            Context.Respond("To donate, please visit our webstore: " + Tebex.Instance.information.domain);
         }
-
     }
 }
