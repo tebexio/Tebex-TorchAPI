@@ -23,6 +23,5 @@ namespace TebexTorchAPI.Commands
             }
             Context.Respond("To donate, please visit our webstore: " + Tebex.Instance.information.domain);
         }
-
     }
 }
