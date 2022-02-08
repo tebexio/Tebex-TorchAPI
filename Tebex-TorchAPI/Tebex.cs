@@ -53,9 +53,6 @@ namespace TebexTorchAPI
             if (_sessionManager != null)
                 _sessionManager.SessionStateChanged += SessionChanged;
 
-            System.Net.ServicePointManager.ServerCertificateValidationCallback +=
-                            (sender, certificate, chain, errors) => { return true; };
-
             Torch.GameStateChanged += GameStateChanged;
 
             this.information = new WebstoreInfo();
