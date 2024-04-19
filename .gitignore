@@ -2,3 +2,6 @@ Tebex-TorchAPI/.vs
 Tebex-TorchAPI/obj
 Tebex-TorchAPI/bin
 Tebex-TorchAPI/packages
+
+.DS_Store
+.idea/
