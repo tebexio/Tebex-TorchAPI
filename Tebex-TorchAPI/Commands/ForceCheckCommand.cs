@@ -7,9 +7,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class ForceCheckCommand : CommandModule
     {
-        [Command("tebex:forcecheck", "Force runs a check for packages to apply.")]
+        [Command("tebex.forcecheck", "Force runs a check for packages to apply.")]
         [Permission(MyPromoteLevel.Admin)]
-        public ForceCheckCommand()
+        public void TebexForceCheck()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

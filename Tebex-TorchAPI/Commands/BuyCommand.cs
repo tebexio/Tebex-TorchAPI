@@ -9,9 +9,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class BuyCommand : CommandModule
     {
-        [Command("tebex:buy", "Links a user to your webstore.")]
+        [Command("buy", "Links a user to your webstore.")]
         [Permission(MyPromoteLevel.None)]
-        public BuyCommand()
+        public void TebexBuy()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

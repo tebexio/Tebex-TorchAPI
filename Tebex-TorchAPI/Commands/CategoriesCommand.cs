@@ -7,9 +7,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class CategoriesCommand : CommandModule
     {
-        [Command("tebex:categories", "Lists package categories from your webstore.")]
+        [Command("tebex.categories", "Lists package categories from your webstore.")]
         [Permission(MyPromoteLevel.None)]
-        public CategoriesCommand()
+        public void TebexCategories()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

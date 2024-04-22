@@ -8,9 +8,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class SecretCommand : CommandModule
     {
-        [Command("tebex:ban", "Bans a user from using your webstore. They must be unbanned from your webstore panel.")]
+        [Command("tebex.secret", "Sets your store's secret key.")]
         [Permission(MyPromoteLevel.Owner)]
-        public SecretCommand()
+        public void TebexSecret()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

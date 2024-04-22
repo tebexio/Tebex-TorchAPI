@@ -7,7 +7,7 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class BanCommand : CommandModule
     {
-        [Command("tebex:ban", "Bans a user from using your webstore. They must be unbanned from your webstore panel.")]
+        [Command("tebex.ban", "Bans a user from using your webstore. They must be unbanned from your webstore panel.")]
         [Permission(MyPromoteLevel.Admin)]
         public BanCommand()
         {

@@ -7,9 +7,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class InfoCommand : CommandModule
     {
-        [Command("tebex:info", "Shows information about the connected webstore.")]
+        [Command("tebex.info", "Shows information about the connected webstore.")]
         [Permission(MyPromoteLevel.None)]
-        public InfoCommand()
+        public void TebexInfo()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var player = Context.Player;

@@ -62,7 +62,7 @@ namespace Tebex.Adapters
 
             Plugin.PluginTimers().Every(refreshTimeSeconds, () =>
             {
-                var currentPlayers = MySession.Static.Players;
+                var currentPlayers = Plugin.Torch.CurrentSession.KeenSession.Players;
                 var newPlayerList = new List<MyPlayer>();
                 
                 foreach (var player in currentPlayers.GetOnlinePlayers())
@@ -107,7 +107,7 @@ namespace Tebex.Adapters
         public override void ReplyPlayer(object player, string message)
         {
             var myPlayer = player as IMyPlayer;
-            IChatManagerServer manager = TorchBase.Instance.CurrentSession.Managers.GetManager<IChatManagerServer>();
+            IChatManagerServer manager = Plugin.Torch.CurrentSession.Managers.GetManager<IChatManagerServer>();
             if (player is MyPlayer)
             {
                 manager?.SendMessageAsOther(null, message, Color.White, (ulong)myPlayer.IdentityId, "White");
@@ -154,7 +154,7 @@ namespace Tebex.Adapters
             {
                 command.Conditions.Delay = 0;
             }
-
+            
             switch (commandName)
             {
                 case "give_item":
@@ -200,11 +200,7 @@ namespace Tebex.Adapters
                     }
                     return giveCreditsSucceeded;
                 default:
-                    LogWarning($"unknown server command: {fullCommand}");
-                    LogWarning("Vanilla Space Engineers only supports the following commands:");
-                    LogWarning("- give_item {id} {itemId} {quantity}");
-                    LogWarning("- give_credits {id} {amount}");
-                    return false;
+                    return TebexPlugin.RunCommand(fullCommand);
             }
         }
         

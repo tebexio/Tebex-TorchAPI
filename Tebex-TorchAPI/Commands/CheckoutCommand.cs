@@ -6,9 +6,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class CheckoutCommand : CommandModule
     {
-        [Command("tebex:checkout", "Creates a link for a given package ID.")]
+        [Command("tebex.checkout", "Creates a link for a given package ID.")]
         [Permission(MyPromoteLevel.None)]
-        public CheckoutCommand()
+        public void TebexCheckout()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

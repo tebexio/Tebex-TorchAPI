@@ -7,9 +7,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class HelpCommand : CommandModule
     {
-        [Command("tebex:help", "Prints all available commands for your promotion level.")]
+        [Command("tebex.help", "Prints all available commands for your promotion level.")]
         [Permission(MyPromoteLevel.Admin)]
-        public HelpCommand()
+        public void TebexHelp()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var player = Context.Player;

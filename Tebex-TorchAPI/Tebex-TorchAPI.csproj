@@ -7,7 +7,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TorchAPI</RootNamespace>
     <AssemblyName>TebexTorchAPI</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
@@ -29,101 +29,47 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>packages\NLog.4.4.13\lib\net45\NLog.dll</HintPath>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Sandbox.Common">
-      <HintPath>$(SolutionDir)\GameBinaries\Sandbox.Common.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Lib\Sandbox.Common.dll</HintPath>
     </Reference>
     <Reference Include="Sandbox.Game">
-      <HintPath>$(SolutionDir)\GameBinaries\Sandbox.Game.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Sandbox.Graphics">
-      <HintPath>$(SolutionDir)\GameBinaries\Sandbox.Graphics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SpaceEngineers.Game">
-      <HintPath>$(SolutionDir)\GameBinaries\SpaceEngineers.Game.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SpaceEngineers.ObjectBuilders">
-      <HintPath>$(SolutionDir)\GameBinaries\SpaceEngineers.ObjectBuilders.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SpaceEngineers.ObjectBuilders.XmlSerializers">
-      <HintPath>$(SolutionDir)\GameBinaries\SpaceEngineers.ObjectBuilders.XmlSerializers.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Lib\Sandbox.Game.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="Torch">
-      <HintPath>TorchBinaries\Torch.dll</HintPath>
+      <HintPath>..\Lib\Torch.dll</HintPath>
     </Reference>
     <Reference Include="Torch.API">
-      <HintPath>TorchBinaries\Torch.API.dll</HintPath>
+      <HintPath>..\Lib\Torch.API.dll</HintPath>
     </Reference>
     <Reference Include="Torch.Server">
-      <HintPath>TorchBinaries\Torch.Server.exe</HintPath>
+      <HintPath>..\Lib\Torch.Server.exe</HintPath>
     </Reference>
     <Reference Include="VRage">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Audio">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Audio.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Lib\VRage.dll</HintPath>
     </Reference>
     <Reference Include="VRage.Dedicated">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Dedicated.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Lib\VRage.Dedicated.dll</HintPath>
     </Reference>
     <Reference Include="VRage.Game">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Game.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Game.XmlSerializers">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Game.XmlSerializers.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Input">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Input.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Lib\VRage.Game.dll</HintPath>
     </Reference>
     <Reference Include="VRage.Library">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Library.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Lib\VRage.Library.dll</HintPath>
     </Reference>
     <Reference Include="VRage.Math">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Math.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.OpenVRWrapper">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.OpenVRWrapper.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Render">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Render.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Render11">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Render11.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="VRage.Scripting">
-      <HintPath>$(SolutionDir)\GameBinaries\VRage.Scripting.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\Lib\VRage.Math.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

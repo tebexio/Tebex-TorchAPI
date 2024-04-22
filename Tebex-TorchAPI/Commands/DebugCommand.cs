@@ -8,9 +8,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class DebugCommand : CommandModule
     {
-        [Command("tebex:debug", "Enables more in-depth logging.")]
+        [Command("tebex.debug", "Enables more in-depth logging.")]
         [Permission(MyPromoteLevel.Admin)]
-        public DebugCommand()
+        public void TebexDebug()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

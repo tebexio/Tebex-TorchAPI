@@ -1,12 +1,15 @@
 using System.Collections.Generic;
 using Torch.Commands;
+using Torch.Commands.Permissions;
 using VRage.Game.ModAPI;
 
 namespace TebexSpaceEngineersPlugin.Commands
 {
     public class SendLinkCommand : CommandModule
     {
-        public SendLinkCommand()
+        [Command("tebex.sendlink", "Sends a checkout link to a player.")]
+        [Permission(MyPromoteLevel.Owner)]
+        public void TebexSendLink()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

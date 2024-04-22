@@ -7,9 +7,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class PackagesCommand : CommandModule
     {
-        [Command("tebex:packages", "Shows packages available for purchase.")]
+        [Command("tebex.packages", "Shows packages available for purchase.")]
         [Permission(MyPromoteLevel.Admin)]
-        public PackagesCommand()
+        public void TebexPackages()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

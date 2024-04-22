@@ -7,9 +7,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class UnbanCommand : CommandModule
     {
-        [Command("tebex:unban", "Players must be unbanned via your webstore.")]
+        [Command("tebex.unban", "Players must be unbanned via your webstore.")]
         [Permission(MyPromoteLevel.Admin)]
-        public UnbanCommand()
+        public void TebexUnban()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

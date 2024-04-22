@@ -8,11 +8,12 @@ using VRage.Game.ModAPI;
 
 namespace TebexSpaceEngineersPlugin.Commands
 {
-    [Command("tebex:lookup", "Looks up user statistics from your webstore.")]
-    [Permission(MyPromoteLevel.Admin)]
+
     public class LookupCommand : CommandModule
     {
-        public LookupCommand()
+        [Command("tebex.lookup", "Looks up user statistics from your webstore.")]
+        [Permission(MyPromoteLevel.Admin)]
+        public void TebexLookup()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

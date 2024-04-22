@@ -9,9 +9,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class RefreshCommand : CommandModule
     {
-        [Command("tebex:refresh", "Refreshes store information, packages, and categories.")]
+        [Command("tebex.refresh", "Refreshes store information, packages, and categories.")]
         [Permission(MyPromoteLevel.Admin)]
-        public RefreshCommand()
+        public void TebexRefresh()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

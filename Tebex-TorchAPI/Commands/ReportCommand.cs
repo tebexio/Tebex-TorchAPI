@@ -9,9 +9,9 @@ namespace TebexSpaceEngineersPlugin.Commands
 {
     public class ReportCommand : CommandModule
     {
-        [Command("tebex:report", "Reports an issue to the Tebex development team.")]
+        [Command("tebex.report", "Reports an issue to the Tebex development team.")]
         [Permission(MyPromoteLevel.Admin)]
-        public ReportCommand()
+        public void TebexReport()
         {
             var _adapter = TebexPlugin.GetAdapter();
             var commandRunner = Context.Player;

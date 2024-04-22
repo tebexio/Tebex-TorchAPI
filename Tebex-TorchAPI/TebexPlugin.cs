@@ -11,8 +11,12 @@ using Tebex.Adapters;
 using Tebex.API;
 using Tebex.Shared.Components;
 using Torch;
+using Torch.API;
 using Torch.API.Managers;
+using Torch.API.Plugins;
+using Torch.API.Session;
 using Torch.Commands;
+using Torch.Session;
 using VRage.FileSystem;
 using VRage.Game.ModAPI;
 using VRage.GameServices;
@@ -21,36 +25,31 @@ using VRage.Plugins;
 namespace TebexSpaceEngineersPlugin {
 
     //Notation by Bishbash777#0465
-    public class TebexPlugin : IConfigurablePlugin {
+    public class TebexPlugin : TorchPluginBase
+    {
+        internal static ITorchBase _torch; // torch instance
+        
         #region Template
         //Global value for config which when implemented correctly, Can be read anywhere in the plugin assembly
         private PluginConfiguration m_configuration;
-
-
-        //Init is called once the server has been deemed to be "Ready"
-        public void Init(object gameInstance) {
-
-            //GetConfiguration NEEDS to be called at this point in the process or else Developers will experience the
-            //behaviour that is exhibited on the description of the GetConfiguration definition below...
-            GetConfiguration(MyFileSystem.UserDataPath);
-            Load();
+        
+        
+        // Torch initialization
+        public override void Init(ITorchBase torchBase)
+        {
+            _torch = torchBase;
+            var sessionManager = _torch.Managers.GetManager<TorchSessionManager>();
+            sessionManager.SessionStateChanged += OnSessionChanged;
         }
-
-        //Called every gameupdate or 'Tick'
-        public void Update()
+        
+        public override void Update()
         {
             if (TebexSpaceEngineersAdapter.Plugin != null)
             {
                 TebexSpaceEngineersAdapter.Plugin.Tick();
             }
         }
-
-
-        //Seems to either be non-functional or more likely called too late in the plugins initialisation stage meaning that
-        //if you want to read any configuration values in Update() Or Init(), you will be met with a null ref crash...
-        //Maybe consider a mandatory GLOBAL to be defined at the top of the main class which could be read by the DS
-        //which will tell it the name of the cfg file therefore cutting out the need for GetConfiguration to be mandatory
-        //in each seperate plugin that is ever developed.
+        
         public IPluginConfiguration GetConfiguration(string userDataPath) {
             if (m_configuration == null) {
                 string configFile = Path.Combine(userDataPath, "Tebex.cfg");
@@ -70,7 +69,8 @@ namespace TebexSpaceEngineersPlugin {
         }
 
         //Run when server is in unload/shutdown
-        public void Dispose() {
+        public override void Dispose() {
+            _adapter.ProcessJoinQueue();
         }
 
         //Returned to DS to display a friendly name of the plugin to the DS user...
@@ -97,10 +97,22 @@ namespace TebexSpaceEngineersPlugin {
             BaseTebexAdapter.PluginConfig.SecretKey = m_configuration.SecretKey;
             BaseTebexAdapter.PluginConfig.AutoReportingEnabled = m_configuration.AutoReportingEnabled;
             BaseTebexAdapter.PluginConfig.DebugMode = m_configuration.DebugMode;
-            Init();
         }
 
-        private void Init()
+        private void OnSessionChanged(ITorchSession session, TorchSessionState state)
+        {
+            switch (state)
+            {
+                case TorchSessionState.Loaded:
+                    GetConfiguration(MyFileSystem.UserDataPath);
+                    Load();
+                    _init();
+                    break;
+            }
+        }
+        
+        // Adapter initialization must take place when the game is running.
+        private void _init()
         {
             // Setup our API and adapter
             _adapter = new TebexSpaceEngineersAdapter(this);
@@ -276,10 +288,24 @@ namespace TebexSpaceEngineersPlugin {
             }
         }
         
-        public static void RunCommand(string command)
+        public static bool RunCommand(string command)
         {
-            var manager = TorchBase.Instance.CurrentSession.Managers.GetManager<CommandManager>();
-            manager?.HandleCommandFromServer(command);
+            var manager = _torch.CurrentSession.Managers.GetManager<CommandManager>();
+            var commandMessages = manager?.HandleCommandFromServer(command);
+            _adapter.LogDebug($"response from command: '{command}'");
+            if (commandMessages != null)
+            {
+                foreach (var commandMessage in commandMessages)
+                {
+                    _adapter.LogDebug($"- {commandMessage}");
+                }    
+            }
+            else
+            {
+                _adapter.LogDebug("$- null");
+            }
+            
+            return true; // assumes success FIXME
         }
         #endregion
     }
