@@ -5,8 +5,12 @@ using VRage.Plugins;
 
 namespace TebexSpaceEngineersPlugin
 {
-    public class PluginConfiguration : ViewModel, IPluginConfiguration
+    public class PluginConfiguration : ViewModel
     {
+        public PluginConfiguration()
+        {
+        }
+        
         [Display(Name = "Debug Mode", Description = "Set to true for in-depth logging information")]
         [Category("Tebex Config")]
         public bool DebugMode = false;
@@ -18,10 +22,5 @@ namespace TebexSpaceEngineersPlugin
         [Display(Name = "Auto Report Errors", Description = "Any errors will be automatically reported to Tebex")]
         [Category("Tebex Config")]
         public bool AutoReportingEnabled = true;
-
-        public void Save(string userDataPath)
-        {
-            //FIXME
-        }
     }
 }

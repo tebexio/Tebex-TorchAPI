@@ -27,18 +27,18 @@ namespace TebexSpaceEngineersPlugin {
     //Notation by Bishbash777#0465
     public class TebexPlugin : TorchPluginBase
     {
-        internal static ITorchBase _torch; // torch instance
+        private static ITorchBase _torch;
+        internal static Persistent<PluginConfiguration> Config;
         
         #region Template
-        //Global value for config which when implemented correctly, Can be read anywhere in the plugin assembly
-        private PluginConfiguration m_configuration;
-        
         
         // Torch initialization
         public override void Init(ITorchBase torchBase)
         {
             _torch = torchBase;
-            var sessionManager = _torch.Managers.GetManager<TorchSessionManager>();
+            var configPath = Path.Combine(StoragePath, "Tebex.cfg");
+            Config = Persistent<PluginConfiguration>.Load(configPath);
+            var sessionManager = Torch.Managers.GetManager<TorchSessionManager>();
             sessionManager.SessionStateChanged += OnSessionChanged;
         }
         
@@ -48,24 +48,6 @@ namespace TebexSpaceEngineersPlugin {
             {
                 TebexSpaceEngineersAdapter.Plugin.Tick();
             }
-        }
-        
-        public IPluginConfiguration GetConfiguration(string userDataPath) {
-            if (m_configuration == null) {
-                string configFile = Path.Combine(userDataPath, "Tebex.cfg");
-                if (File.Exists(configFile)) {
-                    XmlSerializer serializer = new XmlSerializer(typeof(PluginConfiguration));
-                    using (FileStream stream = File.OpenRead(configFile)) {
-                        m_configuration = serializer.Deserialize(stream) as PluginConfiguration;
-                    }
-                }
-
-                if (m_configuration == null) {
-                    m_configuration = new PluginConfiguration();
-                }
-            }
-
-            return m_configuration;
         }
 
         //Run when server is in unload/shutdown
@@ -91,12 +73,12 @@ namespace TebexSpaceEngineersPlugin {
             return "2.0.0-DEV";
         }
 
-        protected void Load()
+        protected void SyncConfiguration()
         {
             // Sync configuration to BaseTebexAdapter model
-            BaseTebexAdapter.PluginConfig.SecretKey = m_configuration.SecretKey;
-            BaseTebexAdapter.PluginConfig.AutoReportingEnabled = m_configuration.AutoReportingEnabled;
-            BaseTebexAdapter.PluginConfig.DebugMode = m_configuration.DebugMode;
+            BaseTebexAdapter.PluginConfig.SecretKey = Config.Data.SecretKey;
+            BaseTebexAdapter.PluginConfig.AutoReportingEnabled = Config.Data.AutoReportingEnabled;
+            BaseTebexAdapter.PluginConfig.DebugMode = Config.Data.DebugMode;
         }
 
         private void OnSessionChanged(ITorchSession session, TorchSessionState state)
@@ -104,9 +86,11 @@ namespace TebexSpaceEngineersPlugin {
             switch (state)
             {
                 case TorchSessionState.Loaded:
-                    GetConfiguration(MyFileSystem.UserDataPath);
-                    Load();
+                    SyncConfiguration();
                     _init();
+                    break;
+                case TorchSessionState.Unloading:
+                    OnServerShutdown();
                     break;
             }
         }
@@ -180,7 +164,7 @@ namespace TebexSpaceEngineersPlugin {
         
         private void OnServerShutdown()
         {
-            // Make sure join queue is always empties on shutdown
+            // Make sure join queue is always emptied on shutdown
             _adapter.ProcessJoinQueue();
         }
 
@@ -196,7 +180,7 @@ namespace TebexSpaceEngineersPlugin {
 
         public void SaveConfiguration()
         {
-            m_configuration.Save(""); //FIXME
+            Config.Save();
         }
 
         public static string GetPlayerIp(ulong steamId)
