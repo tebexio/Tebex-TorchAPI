@@ -411,7 +411,7 @@ namespace Tebex.Adapters
             return partialEvent;
         }
 
-        public void SaveConfiguration()
+        public override void SaveConfiguration()
         {
             Plugin.SaveConfiguration();
         }

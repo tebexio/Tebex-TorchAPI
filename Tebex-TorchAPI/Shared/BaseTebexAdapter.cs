@@ -35,6 +35,8 @@ namespace Tebex.Adapters
         
         public abstract void Init();
 
+        public abstract void SaveConfiguration();
+        
         public void DeleteExecutedCommands(bool ignoreWaitCheck = false)
         {
             LogDebug("Deleting executed commands...");
@@ -121,6 +123,7 @@ namespace Tebex.Adapters
             //public bool AllowGui = false;
             public string SecretKey = "your-secret-key-here";
 
+            public bool DisableRedeemCommand = false;
             public void LoadDefaults()
             {
                 DebugMode = false;

@@ -22,5 +22,9 @@ namespace TebexSpaceEngineersPlugin
         [Display(Name = "Auto Report Errors", Description = "Any errors will be automatically reported to Tebex")]
         [Category("Tebex Config")]
         public bool AutoReportingEnabled = true;
+
+        [Display(Name = "Disable Redeem Command", Description = "Disable to prevent players from using /tebex:redeem")]
+        [Category("Tebex Config")]
+        public bool DisableRedeemCommand = false;
     }
 }

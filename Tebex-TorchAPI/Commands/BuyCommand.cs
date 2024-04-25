@@ -22,15 +22,6 @@ namespace TebexSpaceEngineersPlugin.Commands
                 return;
             }
 
-            //FIXME
-            /*
-            if (commandRunner is ConsolePlayer)
-            {
-                _adapter.ReplyPlayer(commandRunner,
-                    "/tebex:buy cannot be executed via console. Use tebex:sendlink <username> <packageId> to specify a target player.");
-                return;
-            }*/
-
             if (commandRunner is IMyPlayer)
             {
                 var player = commandRunner;
@@ -45,6 +36,10 @@ namespace TebexSpaceEngineersPlugin.Commands
                     _adapter.LogError("Store information is not available. Check secret key and run /tebex:refresh");
                     _adapter.ReplyPlayer(player, "This store is not yet setup.");
                 }
+            }
+            else
+            {
+                _adapter.LogError("Cannot run buy command for player of type: " + commandRunner.GetType().FullName);
             }
         }
     }

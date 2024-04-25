@@ -79,6 +79,7 @@ namespace TebexSpaceEngineersPlugin {
             BaseTebexAdapter.PluginConfig.SecretKey = Config.Data.SecretKey;
             BaseTebexAdapter.PluginConfig.AutoReportingEnabled = Config.Data.AutoReportingEnabled;
             BaseTebexAdapter.PluginConfig.DebugMode = Config.Data.DebugMode;
+            BaseTebexAdapter.PluginConfig.DisableRedeemCommand = Config.Data.DisableRedeemCommand;
         }
 
         private void OnSessionChanged(ITorchSession session, TorchSessionState state)
@@ -180,6 +181,10 @@ namespace TebexSpaceEngineersPlugin {
 
         public void SaveConfiguration()
         {
+            Config.Data.SecretKey = BaseTebexAdapter.PluginConfig.SecretKey;
+            Config.Data.AutoReportingEnabled = BaseTebexAdapter.PluginConfig.AutoReportingEnabled;
+            Config.Data.DebugMode = BaseTebexAdapter.PluginConfig.DebugMode;
+            Config.Data.DisableRedeemCommand = BaseTebexAdapter.PluginConfig.DisableRedeemCommand;
             Config.Save();
         }
 

@@ -24,7 +24,7 @@ namespace TebexSpaceEngineersPlugin.Commands
 
             _adapter.ReplyPlayer(commandRunner, "Setting your secret key...");
             BaseTebexAdapter.PluginConfig.SecretKey = args[0];
-            //_adapter.SaveConfiguration(); //FIXME
+            _adapter.SaveConfiguration();
 
             // Reset store info so that we don't fetch from the cache
             BaseTebexAdapter.Cache.Instance.Remove("information");

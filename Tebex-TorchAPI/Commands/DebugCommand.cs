@@ -25,13 +25,13 @@ namespace TebexSpaceEngineersPlugin.Commands
             if (args[0].Equals("on"))
             {
                 BaseTebexAdapter.PluginConfig.DebugMode = true;
-                //Config.WriteObject(BaseTebexAdapter.PluginConfig); FIXME
+                _adapter.SaveConfiguration();
                 _adapter.ReplyPlayer(commandRunner, "Debug mode is enabled.");
             }
             else if (args[0].Equals("off"))
             {
                 BaseTebexAdapter.PluginConfig.DebugMode = false;
-                //Config.WriteObject(BaseTebexAdapter.PluginConfig); FIXME
+                _adapter.SaveConfiguration();
                 _adapter.ReplyPlayer(commandRunner, "Debug mode is disabled.");
             }
             else
