@@ -89,8 +89,6 @@
     <Compile Include="Commands\SecretCommand.cs" />
     <Compile Include="Commands\SendLinkCommand.cs" />
     <Compile Include="Commands\UnbanCommand.cs" />
-    <Compile Include="PatchController.cs" />
-    <Compile Include="Patches\ChatPatch.cs" />
     <Compile Include="PluginConfiguration.cs" />
     <Compile Include="Shared\BaseTebexAdapter.cs" />
     <Compile Include="Shared\Components\IServer.cs" />
