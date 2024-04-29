@@ -21,6 +21,7 @@ using VRage.FileSystem;
 using VRage.Game.ModAPI;
 using VRage.GameServices;
 using VRage.Plugins;
+using VRage.Utils;
 
 namespace TebexSpaceEngineersPlugin {
 
@@ -37,8 +38,7 @@ namespace TebexSpaceEngineersPlugin {
         public override void Init(ITorchBase torchBase)
         {
             _torch = torchBase;
-            var configPath = Path.Combine(StoragePath, "Tebex.cfg");
-            _adapter.LogInfo($"Loading Tebex configuration from {configPath}");
+            var configPath = Path.Combine(StoragePath, "Tebex.cfg"); 
             _config = Persistent<TebexTorchConfig>.Load(configPath);
             var sessionManager = Torch.Managers.GetManager<TorchSessionManager>();
             sessionManager.SessionStateChanged += OnSessionChanged;
@@ -104,7 +104,7 @@ namespace TebexSpaceEngineersPlugin {
             // Setup our API and adapter
             _adapter = new TebexSpaceEngineersAdapter(this);
             _adapter.LogInfo("Tebex is starting up...");
-            
+            _adapter.LogInfo("Config is read from " + Path.Combine(StoragePath, "Tebex.cfg"));
             // Init plugin components so they have access to our adapter
             _webrequest = new WebRequests(_adapter);
             _timers = new TickTimers(_adapter);
