@@ -28,7 +28,8 @@ namespace TebexSpaceEngineersPlugin {
     public class TebexPlugin : TorchPluginBase
     {
         private static ITorchBase _torch;
-        internal static Persistent<PluginConfiguration> Config;
+        private Persistent<TebexTorchConfig> _config;
+        public TebexTorchConfig Config => _config?.Data;
         
         #region Template
         
@@ -37,7 +38,8 @@ namespace TebexSpaceEngineersPlugin {
         {
             _torch = torchBase;
             var configPath = Path.Combine(StoragePath, "Tebex.cfg");
-            Config = Persistent<PluginConfiguration>.Load(configPath);
+            _adapter.LogInfo($"Loading Tebex configuration from {configPath}");
+            _config = Persistent<TebexTorchConfig>.Load(configPath);
             var sessionManager = Torch.Managers.GetManager<TorchSessionManager>();
             sessionManager.SessionStateChanged += OnSessionChanged;
         }
@@ -76,10 +78,10 @@ namespace TebexSpaceEngineersPlugin {
         protected void SyncConfiguration()
         {
             // Sync configuration to BaseTebexAdapter model
-            BaseTebexAdapter.PluginConfig.SecretKey = Config.Data.SecretKey;
-            BaseTebexAdapter.PluginConfig.AutoReportingEnabled = Config.Data.AutoReportingEnabled;
-            BaseTebexAdapter.PluginConfig.DebugMode = Config.Data.DebugMode;
-            BaseTebexAdapter.PluginConfig.DisableRedeemCommand = Config.Data.DisableRedeemCommand;
+            BaseTebexAdapter.PluginConfig.SecretKey = _config.Data.SecretKey;
+            BaseTebexAdapter.PluginConfig.AutoReportingEnabled = _config.Data.AutoReportingEnabled;
+            BaseTebexAdapter.PluginConfig.DebugMode = _config.Data.DebugMode;
+            BaseTebexAdapter.PluginConfig.DisableRedeemCommand = _config.Data.DisableRedeemCommand;
         }
 
         private void OnSessionChanged(ITorchSession session, TorchSessionState state)
@@ -181,11 +183,11 @@ namespace TebexSpaceEngineersPlugin {
 
         public void SaveConfiguration()
         {
-            Config.Data.SecretKey = BaseTebexAdapter.PluginConfig.SecretKey;
-            Config.Data.AutoReportingEnabled = BaseTebexAdapter.PluginConfig.AutoReportingEnabled;
-            Config.Data.DebugMode = BaseTebexAdapter.PluginConfig.DebugMode;
-            Config.Data.DisableRedeemCommand = BaseTebexAdapter.PluginConfig.DisableRedeemCommand;
-            Config.Save();
+            _config.Data.SecretKey = BaseTebexAdapter.PluginConfig.SecretKey;
+            _config.Data.AutoReportingEnabled = BaseTebexAdapter.PluginConfig.AutoReportingEnabled;
+            _config.Data.DebugMode = BaseTebexAdapter.PluginConfig.DebugMode;
+            _config.Data.DisableRedeemCommand = BaseTebexAdapter.PluginConfig.DisableRedeemCommand;
+            _config.Save();
         }
 
         public static string GetPlayerIp(ulong steamId)
