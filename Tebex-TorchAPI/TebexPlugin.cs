@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 using System.Xml.Serialization;
 using Sandbox.Engine.Networking;
 using Sandbox.Game.World;
@@ -26,8 +27,11 @@ using VRage.Utils;
 namespace TebexSpaceEngineersPlugin {
 
     //Notation by Bishbash777#0465
-    public class TebexPlugin : TorchPluginBase
+    public class TebexPlugin : TorchPluginBase, IWpfPlugin
     {
+        private TebexPluginControl _control;
+        public UserControl GetControl() => _control ?? (_control = new TebexPluginControl());
+        
         private static ITorchBase _torch;
         private Persistent<TebexTorchConfig> _config;
         public TebexTorchConfig Config => _config?.Data;
