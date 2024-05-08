@@ -30,7 +30,7 @@ namespace TebexSpaceEngineersPlugin {
     public class TebexPlugin : TorchPluginBase, IWpfPlugin
     {
         private TebexPluginControl _control;
-        public UserControl GetControl() => _control ?? (_control = new TebexPluginControl());
+        public UserControl GetControl() => _control ?? (_control = new TebexPluginControl(this));
         
         private static ITorchBase _torch;
         private Persistent<TebexTorchConfig> _config;
