@@ -24,8 +24,6 @@ namespace Tebex.API.Shared
             {
                 case "help":
                     return HelpCommand(commandContext);
-                case "redeem":
-                    return RedeemCommand(commandContext);
                 case "forcecheck": 
                     return ForceCheckCommand(commandContext);
                 case "secret": 
@@ -47,12 +45,7 @@ namespace Tebex.API.Shared
             context.ReplySender("tebex:forcecheck                 - Forces the command queue to check for any pending purchases.");
             return true;
         }
-            
-        public static bool RedeemCommand(TebexCommandContext context)
-        {
-            return false;
-        }
-            
+
         public static bool SecretCommand(TebexCommandContext context)
         {
             return false;

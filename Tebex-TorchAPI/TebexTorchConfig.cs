@@ -37,13 +37,5 @@ namespace TebexSpaceEngineersPlugin
             get => _autoReportingEnabled;
             set => SetValue(ref _autoReportingEnabled, value);
         }
-
-        private bool _disableRedeemCommand = false;
-        [Display(Name = "Disable Redeem Command", Description = "Disable to prevent players from using /tebex:redeem")]
-        public bool DisableRedeemCommand
-        {
-            get => _disableRedeemCommand;
-            set => SetValue(ref _disableRedeemCommand, value);
-        }
     }
 }

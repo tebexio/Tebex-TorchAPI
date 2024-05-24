@@ -32,7 +32,6 @@ The following commands are available in the Torch API plugin:
 - `/tebex.sendlink <player> <packageId>`: Send a purchase link for a package to a player.
 - `/tebex.forcecheck`: Force run any due online and offline commands.
 - `/tebex.refresh`: Refresh your store's listings.
-- `/tebex.report`: Prepare a report that can be submitted to our support team.
 - `/tebex.ban`: Ban a player from using the store. **Players can only be unbanned from the webstore UI.**
 - `/tebex.lookup`: Display information about a customer.
 
@@ -44,7 +43,6 @@ The following commands are available in the Torch API plugin:
 - `/tebex.packages`: View all store packages.
 - `/tebex.checkout <packageId>`: Create a checkout link for a package.
 - `/tebex.stats`: View your own player statistics in the store.
-- `/tebex.redeem` : Redeems the current player's pending purchases.
 
 ## Installation
 To install the Tebex Plugin for a Space Engineers dedicated server, follow these steps:

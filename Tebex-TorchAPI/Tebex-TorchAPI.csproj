@@ -88,7 +88,6 @@
     <Compile Include="Commands\LookupCommand.cs" />
     <Compile Include="Commands\PackagesCommand.cs" />
     <Compile Include="Commands\RefreshCommand.cs" />
-    <Compile Include="Commands\ReportCommand.cs" />
     <Compile Include="Commands\SecretCommand.cs" />
     <Compile Include="Commands\SendLinkCommand.cs" />
     <Compile Include="Commands\UnbanCommand.cs" />

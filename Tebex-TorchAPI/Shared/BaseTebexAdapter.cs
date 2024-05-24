@@ -123,7 +123,6 @@ namespace Tebex.Adapters
             //public bool AllowGui = false;
             public string SecretKey = "your-secret-key-here";
 
-            public bool DisableRedeemCommand = false;
             public void LoadDefaults()
             {
                 DebugMode = false;

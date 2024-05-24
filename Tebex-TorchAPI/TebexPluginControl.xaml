@@ -15,8 +15,6 @@
         <CheckBox IsChecked="{Binding AutoReportingEnabled}"/>
         <Label Content="Debug Mode"/>
         <CheckBox IsChecked="{Binding DebugMode}"/>
-        <Label Content="Disable Redeem Command"/>
-        <CheckBox IsChecked="{Binding DisableRedeemCommand}"/>
         <Button Content="Save Config" Click="SaveConfig_OnClick"></Button>
     </StackPanel>
 </UserControl>
