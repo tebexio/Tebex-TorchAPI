@@ -297,8 +297,21 @@ namespace TebexSpaceEngineersPlugin {
             {
                 _adapter.LogDebug("$- null");
             }
+
+            if (commandMessages != null)
+            {
+                foreach (var message in commandMessages)
+                {
+                    // try to generalize if there was a failure based on any returned messages
+                    var lowerMessage = message.Message.ToLower();
+                    if (lowerMessage.Contains("error") || lowerMessage.Contains("failed"))
+                    {
+                        return false;
+                    }
+                }
+            }
             
-            return true; // assumes success FIXME
+            return true; // success
         }
         #endregion
     }
