@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Threading;
-using Newtonsoft.Json.Linq;
-using Torch.API.Managers;
+﻿using Torch.API.Managers;
 using Torch.Commands;
 
 
@@ -11,7 +6,7 @@ namespace TebexTorchAPI
 {
     public class TebexCommandRunner
     {
-
+        /**
         public static int deleteAfter = 3;
         
         public static void doOfflineCommands()
@@ -201,11 +196,6 @@ namespace TebexTorchAPI
         {
             return command.Replace("{id}", id).Replace("{username}", username);
         }
-
-        private static void RunCommand(string command)
-        {
-            var manager = Tebex.Instance.Torch.CurrentSession.Managers.GetManager<CommandManager>();
-            manager?.HandleCommandFromServer(command);
-        }
+        */
     }
 }
