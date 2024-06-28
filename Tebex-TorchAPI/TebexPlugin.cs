@@ -186,9 +186,6 @@ namespace TebexSpaceEngineersPlugin {
 
         public void SaveConfiguration()
         {
-            _config.Data.SecretKey = BaseTebexAdapter.PluginConfig.SecretKey;
-            _config.Data.AutoReportingEnabled = BaseTebexAdapter.PluginConfig.AutoReportingEnabled;
-            _config.Data.DebugMode = BaseTebexAdapter.PluginConfig.DebugMode;
             _config.Save();
         }
 

@@ -15,4 +15,5 @@
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002FUsers_002Fxndir_002FDocuments_002FGitHub_002FTebex_002DTorchAPI_002FTebex_002DTorchAPI_002FTorchBinaries_002FTorch_002EServer_002Eexe/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7\System.Net.dll" /&gt;&#xD;
+  &lt;Assembly Path="C:\Users\TebexDev\Documents\GitHub\Tebex-TorchAPI\Lib\Newtonsoft.Json.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

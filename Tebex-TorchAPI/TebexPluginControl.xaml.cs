@@ -15,6 +15,7 @@ namespace TebexSpaceEngineersPlugin
         public TebexPluginControl(TebexPlugin plugin) : this()
         {
             this.Plugin = plugin;
+            this.DataContext = plugin.Config;
         }
         
         private void SaveConfig_OnClick(object sender, RoutedEventArgs e)
