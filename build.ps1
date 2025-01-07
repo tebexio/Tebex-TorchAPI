@@ -1,9 +1,9 @@
 ﻿# Uses dotnet to compile the release version of the plugin. A distributable zip will be placed in your working dir.
-$version = "2.0.0"
+$version = "2.0.1"
 $workingDir = Get-Location
 
 # Compile the solution using dotnet and check for success
-$buildToolPath = "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\amd64\MSBuild.exe"
+$buildToolPath = "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe"
 $buildResult = & $buildToolPath .\Tebex-TorchAPI\Tebex-TorchAPI.sln -p:Configuration=Release
 
 if ($LASTEXITCODE -ne 0) {
