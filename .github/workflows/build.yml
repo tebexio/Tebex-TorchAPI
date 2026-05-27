@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Build Release|x64
+        run: msbuild Tebex-TorchAPI\Tebex-TorchAPI.sln /p:Configuration=Release /p:Platform=x64 /nologo /verbosity:minimal
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Tebex-TorchAPI
+          path: |
+            Tebex-TorchAPI/bin/x64/Release/TebexTorchAPI.dll
+            Tebex-TorchAPI/bin/x64/Release/TebexTorchAPI.pdb
+          if-no-files-found: error
