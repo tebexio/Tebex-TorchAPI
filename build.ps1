@@ -1,5 +1,5 @@
 ﻿# Uses dotnet to compile the release version of the plugin. A distributable zip will be placed in your working dir.
-$version = "2.0.1"
+$version = "2.0.2"
 $workingDir = Get-Location
 
 # Compile the solution using dotnet and check for success

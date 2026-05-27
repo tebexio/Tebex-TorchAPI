@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Uses msbuild to compile the release version of the plugin. A distributable zip will be placed in your working dir.
-VERSION="2.0.1"
+VERSION="2.0.2"
 workingDir=$(pwd)
 msbuild ./Tebex-TorchAPI/Tebex-TorchAPI.sln -p:Configuration=Release
 cd ./Tebex-TorchAPI/bin/x64/Release
